@@ -1,0 +1,34 @@
+# Builder Advisor
+
+> A decision partner for solo builders. Not a knowledge base — a system that challenges your thinking.
+
+Solo builders don't need more information. They need pushback. Builder Advisor is an open-source system that gives any AI agent the ability to stress-test your decisions using proven patterns from hundreds of solo builder journeys.
+
+## How It Works
+
+Builder Advisor consists of three components:
+
+1. **Decision Patterns** — A structured library of common situations solo builders face, the mistakes they typically make, and the questions that separate good decisions from bad ones.
+
+2. **An MCP Server** — Connects to Claude, Codex, Copilot, Cursor, or any MCP-compatible agent. Provides tools for challenging decisions, maintaining builder context, and keeping a decision journal.
+
+3. **An Agent Skill** — A portable SKILL.md file (open Agent Skills standard) that teaches any compatible AI agent how to act as a decision partner.
+
+## Available Decision Patterns
+
+- [Pricing Your First Product](/patterns/pricing-first-product): Setting a price that reflects value, not cost
+- [Building Audience vs. Product First](/patterns/build-vs-buy-audience): Resolving the distribution-vs-building tension
+- [When to Leave Your Day Job](/patterns/when-to-quit-day-job): Making the transition with eyes open
+- [Choosing What to Build](/patterns/choosing-what-to-build): Committing to something specific
+- [Going Solo vs. Finding a Co-founder](/patterns/solo-vs-cofounder): Being honest about what you actually need
+- [When to Ship vs. Keep Building](/patterns/feature-creep-vs-shipping): Getting past the one-more-feature loop
+- [Saying No to Customers](/patterns/saying-no-to-customers): Protecting your product vision
+- [Recognizing Burnout](/patterns/burnout-recognition): Catching it before it catches you
+- [When to Pivot vs. Persist](/patterns/when-to-pivot): Distinguishing hard from wrong
+- [AI Tools vs. Manual Work](/patterns/ai-tools-vs-manual): Using AI as a multiplier, not a crutch
+
+## Connect
+
+- MCP Server: `https://your-domain.com/mcp`
+- Agent Skill: Download from `/skill/builder-advisor.zip`
+- GitHub: `https://github.com/your-repo/builder-advisor`

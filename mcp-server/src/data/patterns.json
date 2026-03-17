@@ -1,0 +1,322 @@
+[
+  {
+    "id": "pricing-first-product",
+    "title": "Pricing Your First Product",
+    "situation": "You have a working product with some early users or interest and need to set a price for the first time.",
+    "common_mistakes": [
+      "Pricing based on what it cost you to build instead of the value it creates",
+      "Setting a low price to 'get users first' with no plan to raise it later",
+      "Anchoring to competitor pricing without understanding your positioning",
+      "Offering a free tier that cannibalizes your paid product",
+      "Avoiding the decision entirely by staying in beta forever"
+    ],
+    "challenge_questions": [
+      "What does your best potential customer currently pay — in money, time, or pain — to solve this problem without you?",
+      "If you charged 5x your current instinct, who would still buy? What does that tell you about your real market?",
+      "Are you pricing for validation (learning if people will pay at all) or for revenue (sustaining yourself)?",
+      "What happens to your business model if you can never raise this price?",
+      "Would you rather have 10 customers at $100/mo or 100 customers at $10/mo? Why?"
+    ],
+    "decision_factors": [
+      "Stage of validation — pre-revenue vs. post-revenue changes the calculus",
+      "Your personal runway — how long can you afford to optimize for learning vs. income?",
+      "Market type — is this a market that respects premium pricing or expects cheap/free?",
+      "Switching costs — how hard is it for customers to leave once they start?",
+      "Your time cost — a $10/mo product with high support needs can destroy you as a solo operator"
+    ],
+    "anti_patterns": [
+      "The Perpetual Beta: Using 'beta' as an excuse to avoid the pricing conversation entirely",
+      "The Race to Free: Giving it away because you're afraid of rejection, then resenting the users",
+      "The Competitor Mirror: Copying a funded competitor's price without their cost structure or scale"
+    ],
+    "tags": ["revenue", "pricing", "launch", "validation"]
+  },
+  {
+    "id": "build-vs-buy-audience",
+    "title": "Building an Audience vs. Building a Product First",
+    "situation": "You're trying to decide whether to spend your limited time creating content and building an audience, or heads-down building the product.",
+    "common_mistakes": [
+      "Building in silence for months then launching to zero people",
+      "Spending all your time on content and never shipping anything",
+      "Treating audience-building as a prerequisite instead of a parallel track",
+      "Confusing social media followers with potential customers",
+      "Building an audience around your personality instead of a problem"
+    ],
+    "challenge_questions": [
+      "If you had 10,000 followers tomorrow, what would you sell them? If you don't know, the audience won't help.",
+      "Can you build in public in a way that naturally creates content — or are content and product truly competing for the same hours?",
+      "Who are the 10 specific people you'd want as your first customers? Could you just go talk to them directly instead of broadcasting?",
+      "What's your actual bottleneck right now — distribution or product-market fit?",
+      "Are you drawn to content because it feels productive but is actually a way to avoid the harder work of shipping?"
+    ],
+    "decision_factors": [
+      "Product type — some products require trust before purchase (content helps), others sell on utility alone",
+      "Your natural strengths — some people genuinely build better through public discourse",
+      "Time horizon — audience compounds but slowly; product revenue can start faster",
+      "Market density — can you reach your buyers through direct outreach, or do you need inbound?",
+      "Your emotional needs — building alone is isolating; content creates connection but can become a trap"
+    ],
+    "anti_patterns": [
+      "The Infinite Funnel: Building audience → newsletter → course → community without ever building the core product",
+      "The Silent Builder: 6 months of heads-down work on something nobody asked for",
+      "The Vanity Pivot: Choosing content because likes feel better than the ambiguity of product development"
+    ],
+    "tags": ["distribution", "content", "audience", "product", "launch"]
+  },
+  {
+    "id": "when-to-quit-day-job",
+    "title": "When to Leave Your Day Job",
+    "situation": "You have a side project showing promise and you're trying to decide if and when to go full-time on it.",
+    "common_mistakes": [
+      "Quitting too early on excitement before validating revenue",
+      "Waiting so long that you burn out trying to do both",
+      "Using a revenue number as the only trigger without considering trajectory",
+      "Ignoring the non-financial costs: health insurance, family stress, identity shift",
+      "Assuming you'll be 3x more productive full-time (you won't be — at least not immediately)"
+    ],
+    "challenge_questions": [
+      "What specific number or milestone would make this decision feel obvious? Why haven't you committed to that as your trigger?",
+      "If your side project revenue dropped 50% next month, could you still survive financially for 12 months?",
+      "What are you actually giving up — salary, identity, security, social connection, health benefits — and have you honestly priced each one?",
+      "Is the day job actively preventing progress, or is it a convenient excuse for why things aren't moving faster?",
+      "Have you talked to your family about this in concrete terms — not 'someday I want to' but 'here's the plan and timeline'?"
+    ],
+    "decision_factors": [
+      "Monthly recurring revenue vs. one-time sales — predictability matters more than total amount",
+      "Family obligations and burn rate — what's your real monthly nut?",
+      "Health insurance situation — especially if you have dependents",
+      "Golden handcuffs — unvested equity, upcoming bonus, pension considerations",
+      "Opportunity cost of staying — is the day job actively eroding your window?"
+    ],
+    "anti_patterns": [
+      "The Rage Quit: Leaving after a bad week at work and calling it entrepreneurship",
+      "The Endless Hedge: Doing both forever because the transition feels too risky",
+      "The Fantasy Math: 'If I just work full-time on this, revenue will 5x'"
+    ],
+    "tags": ["career", "transition", "risk", "financial", "family"]
+  },
+  {
+    "id": "choosing-what-to-build",
+    "title": "Choosing What to Build",
+    "situation": "You have multiple ideas — or no ideas — and need to commit to building something specific.",
+    "common_mistakes": [
+      "Evaluating ideas in your head instead of against real criteria",
+      "Choosing the most technically interesting idea instead of the most commercially viable one",
+      "Waiting for the 'perfect' idea that checks every box",
+      "Picking an idea because it worked for someone else without understanding the context",
+      "Choosing based on what you can build instead of what people will pay for"
+    ],
+    "challenge_questions": [
+      "Can you describe a specific person with this problem — not a demographic, but someone you've actually talked to?",
+      "Would you use this product yourself, every week, even if you weren't building it?",
+      "What's the simplest version you could charge money for within 30 days?",
+      "If this idea fails in 6 months, what will you have learned that's useful for the next thing?",
+      "Are you excited about the problem or the solution? Excitement about solutions fades; problems sustain you."
+    ],
+    "decision_factors": [
+      "Personal domain expertise — can you build credibly in this space?",
+      "Market accessibility — can you reach buyers without a massive budget?",
+      "Revenue model clarity — is it obvious how this makes money?",
+      "Technical feasibility for one person — can you build and maintain this solo?",
+      "Your energy and curiosity — will you still care about this problem in 18 months?"
+    ],
+    "anti_patterns": [
+      "The Idea Collector: Maintaining a list of 50 ideas and adding to it instead of committing",
+      "The Clone Trap: 'Uber for X' or 'Notion but better' without a genuine insight",
+      "The Passion Fallacy: Choosing based purely on passion without checking if anyone will pay"
+    ],
+    "tags": ["ideation", "validation", "commitment", "product"]
+  },
+  {
+    "id": "solo-vs-cofounder",
+    "title": "Going Solo vs. Finding a Co-founder",
+    "situation": "You're debating whether to find a co-founder or build alone.",
+    "common_mistakes": [
+      "Finding a co-founder because you're lonely, not because you need complementary skills",
+      "Assuming solo means you can't build a big business",
+      "Splitting equity 50/50 with someone you've known for two weeks",
+      "Using 'I need a co-founder' as a reason to delay starting",
+      "Choosing a co-founder who agrees with everything you say"
+    ],
+    "challenge_questions": [
+      "What specific tasks are you unable or unwilling to do that a co-founder would handle? Could you hire for those instead?",
+      "Are you looking for a co-founder or a therapist? Building alone is hard, but the wrong co-founder is harder.",
+      "Have you actually tried building solo for 90 days, or is this a theoretical concern?",
+      "If your co-founder quit tomorrow, would the business survive? If not, that's a dependency, not a partnership.",
+      "What's your conflict resolution style? Co-founder disagreements are inevitable — how would you handle 'I want to pivot and they don't'?"
+    ],
+    "decision_factors": [
+      "Skill gaps — are they truly gaps, or just areas of lower confidence?",
+      "Accountability needs — some people genuinely cannot self-motivate; that's okay to acknowledge",
+      "Fundraising intentions — VCs have a strong co-founder bias",
+      "Business type — some businesses (deep tech, two-sided marketplaces) are genuinely hard to solo",
+      "Your track record — have you finished projects alone before?"
+    ],
+    "anti_patterns": [
+      "The Comfort Hire: Bringing on a friend so building feels less scary",
+      "The Skills Myth: 'I'm technical so I need a business person' (solo builders do both)",
+      "The Speed Trap: Assuming two people = twice as fast (coordination costs are real)"
+    ],
+    "tags": ["team", "cofounder", "solo", "equity", "early-stage"]
+  },
+  {
+    "id": "feature-creep-vs-shipping",
+    "title": "When to Ship vs. When to Keep Building",
+    "situation": "You have a working product but keep finding reasons to add one more feature before launching.",
+    "common_mistakes": [
+      "Treating launch as a single irreversible moment instead of a continuous process",
+      "Adding features to avoid the vulnerability of putting your work in front of people",
+      "Polishing the UI when you haven't validated the core value proposition",
+      "Comparing your MVP to an established competitor's mature product",
+      "Waiting until you're 'not embarrassed' — you should be slightly embarrassed"
+    ],
+    "challenge_questions": [
+      "If you showed this to a potential customer today, what's the worst thing that could happen? Is that actually bad, or just uncomfortable?",
+      "Which of your planned features are for users and which are for your own comfort?",
+      "Can a real person get real value from what exists right now? If yes, why are you still building?",
+      "What will you learn from launching that you can't learn from building?",
+      "Are you adding features because customers asked for them, or because you imagined they would?"
+    ],
+    "decision_factors": [
+      "Core value deliverable — does the current version solve the core problem?",
+      "Reputational risk — is your market forgiving of early products or not?",
+      "Learning velocity — will launching accelerate your learning?",
+      "Technical debt — are you building on foundations that will need to be torn down?",
+      "Competitive timing — is someone else about to ship something similar?"
+    ],
+    "anti_patterns": [
+      "The One More Thing Loop: 'Just one more feature and then I'll launch' repeated monthly",
+      "The Perfectionist Shield: Using quality standards as a psychological defense against rejection",
+      "The Invisible Launch: Shipping but not telling anyone, then concluding nobody wants it"
+    ],
+    "tags": ["shipping", "mvp", "launch", "perfectionism", "validation"]
+  },
+  {
+    "id": "saying-no-to-customers",
+    "title": "Saying No to Customer Requests",
+    "situation": "Customers are asking for features or customizations that would pull you away from your core product vision.",
+    "common_mistakes": [
+      "Building everything your loudest customer asks for",
+      "Treating every feature request as equal regardless of who's asking",
+      "Saying yes to enterprise customization that turns your product into consulting",
+      "Ignoring all requests because 'Steve Jobs didn't listen to customers'",
+      "Building for the customer you have instead of the customer you want"
+    ],
+    "challenge_questions": [
+      "If you build this, will it attract more customers like the one asking — and do you want more customers like them?",
+      "Is this request revealing a real gap in your product, or is it one person's workflow preference?",
+      "What would you stop working on to build this? Is that trade-off worth it?",
+      "Can you solve the underlying problem differently than the customer is suggesting?",
+      "If you say no, will this customer leave? And is that actually a bad outcome?"
+    ],
+    "decision_factors": [
+      "Revenue concentration — if one customer is 40%+ of revenue, you have a consulting business, not a product",
+      "Request frequency — are multiple unrelated customers asking for the same thing?",
+      "Strategic alignment — does this pull you toward or away from your product vision?",
+      "Maintenance cost — every feature you build, you maintain forever as a solo operator",
+      "Expansion revenue potential — will this unlock a new tier or market?"
+    ],
+    "anti_patterns": [
+      "The Custom Shop: Saying yes to everything and becoming a bespoke development agency",
+      "The Ivory Tower: Dismissing all customer input as uninformed",
+      "The Revenue Panic: Building whatever the biggest check demands regardless of strategy"
+    ],
+    "tags": ["product", "customers", "strategy", "focus", "growth"]
+  },
+  {
+    "id": "burnout-recognition",
+    "title": "Recognizing and Addressing Burnout",
+    "situation": "You're working constantly but feeling less productive, less excited, and increasingly resentful of the work.",
+    "common_mistakes": [
+      "Interpreting burnout as laziness and pushing harder",
+      "Taking a weekend off and calling it recovery",
+      "Blaming the business model when the problem is pace and boundaries",
+      "Comparing your output to founders who have teams, funding, or no families",
+      "Believing that passion should make burnout impossible"
+    ],
+    "challenge_questions": [
+      "When was the last time you did something purely for enjoyment that wasn't building, learning, or optimizing?",
+      "If you took a full week off, what are you afraid would happen? Is that fear based on reality or anxiety?",
+      "Are you building a business that requires you to be unsustainable, or have you chosen to operate that way?",
+      "What would a sustainable version of your current schedule look like — not ideal, just sustainable?",
+      "Who in your life has told you you're overworking, and why did you dismiss them?"
+    ],
+    "decision_factors": [
+      "Physical symptoms — sleep disruption, appetite changes, persistent fatigue are red flags",
+      "Relationship strain — if the people closest to you are worried, believe them",
+      "Decision quality — burnout makes you worse at the decisions that matter most",
+      "Recovery time needed — the longer you wait, the longer recovery takes",
+      "Business resilience — can the business survive you operating at 70% for a month?"
+    ],
+    "anti_patterns": [
+      "The Martyr Complex: Wearing exhaustion as proof of commitment",
+      "The Optimization Trap: Trying to 'hack' your way out of burnout with productivity systems",
+      "The Comparison Spiral: 'They're working harder and they seem fine'"
+    ],
+    "tags": ["health", "sustainability", "mental-health", "pace", "family"]
+  },
+  {
+    "id": "when-to-pivot",
+    "title": "When to Pivot vs. When to Persist",
+    "situation": "Things aren't working as expected and you're trying to decide whether to change direction or push through.",
+    "common_mistakes": [
+      "Pivoting every time something gets hard instead of distinguishing hard from wrong",
+      "Persisting purely because of sunk cost — time already invested",
+      "Pivoting to something easier instead of something better",
+      "Using 'pivot' as a euphemism for 'start over with a new shiny idea'",
+      "Never defining what failure looks like, so you can never honestly evaluate progress"
+    ],
+    "challenge_questions": [
+      "What specific evidence would convince you this isn't working? Have you actually looked for that evidence, or are you avoiding it?",
+      "Is the problem with your product, your market, your distribution, or your execution? These require different responses.",
+      "If a friend described your exact situation, would you tell them to keep going?",
+      "What did you expect to be true by now that isn't? Was the expectation reasonable?",
+      "Are you bored or are you stuck? Boredom is a you-problem; stuck might be a market-problem."
+    ],
+    "decision_factors": [
+      "Signal quality — are you getting clear 'no' signals or just silence?",
+      "Rate of learning — are you still learning something new each week?",
+      "Energy trajectory — is your motivation declining, stable, or recovering?",
+      "Market feedback — what are non-customers telling you about why they didn't buy?",
+      "Alternative quality — is the thing you'd pivot to genuinely better, or just different?"
+    ],
+    "anti_patterns": [
+      "The Pivot Addict: New idea every quarter, nothing gets past the prototype stage",
+      "The Sunk Cost Soldier: 'I've put in too much to quit now'",
+      "The Grass-Is-Greener Pivot: The new idea always looks better because it hasn't been tested yet"
+    ],
+    "tags": ["pivot", "persistence", "failure", "strategy", "growth"]
+  },
+  {
+    "id": "ai-tools-vs-manual",
+    "title": "When to Use AI Tools vs. Do It Yourself",
+    "situation": "You're deciding whether to use AI tools to accelerate work or build skills and understanding manually.",
+    "common_mistakes": [
+      "Using AI to skip understanding and ending up unable to debug or iterate",
+      "Refusing to use AI tools out of pride and moving 10x slower than necessary",
+      "Treating AI output as final instead of as a starting draft",
+      "Using AI for everything including the parts that require your judgment and taste",
+      "Building on AI-generated code you don't understand in production systems"
+    ],
+    "challenge_questions": [
+      "What happens when this AI-generated code breaks at 2am and you need to fix it?",
+      "Is the time you're saving being reinvested in higher-value work, or just more volume?",
+      "Can you explain what this code does to someone else? If not, you don't own it yet.",
+      "Are you using AI as a force multiplier for skills you have, or as a substitute for skills you lack?",
+      "What's your plan when the AI tool changes its pricing, API, or capabilities?"
+    ],
+    "decision_factors": [
+      "Criticality — how bad is it if the AI output is wrong?",
+      "Your existing knowledge — AI amplifies expertise more than it replaces it",
+      "Iteration speed — will AI help you test faster or just produce more untested output?",
+      "Learning value — is this a skill you need to internalize or just a task to complete?",
+      "Dependency risk — are you building a skill or a dependency?"
+    ],
+    "anti_patterns": [
+      "The Vibes-Only Builder: Shipping AI-generated code without understanding any of it",
+      "The Purist: Refusing to use AI because 'real developers don't need it'",
+      "The Volume Trap: Using AI to produce 10x more mediocre output instead of 2x better output"
+    ],
+    "tags": ["ai", "tools", "skills", "productivity", "technical"]
+  }
+]

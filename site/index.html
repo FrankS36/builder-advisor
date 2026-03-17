@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Builder Advisor — Your AI co-founder's bullshit detector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface-2: #1a1a1a;
+      --border: #222222;
+      --border-accent: #333333;
+      --text: #e8e4df;
+      --text-muted: #8a8580;
+      --text-dim: #5a5550;
+      --accent: #e85d26;
+      --accent-glow: #e85d2622;
+      --accent-warm: #d4a574;
+      --green: #4a9e6d;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Outfit', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', 'SF Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Nav ── */
+    nav {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 8rem 0 6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      max-width: 700px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      background: #d44f1a;
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-accent);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      color: var(--text);
+      border-color: var(--text-dim);
+    }
+
+    /* ── How It Works ── */
+    .how-it-works {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 3rem;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .flow-step {
+      background: var(--surface);
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .flow-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      padding-top: 0.3rem;
+    }
+    .flow-step h3 {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .flow-step p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Patterns ── */
+    .patterns {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .pattern-card {
+      background: var(--surface);
+      padding: 2rem;
+      transition: background 0.2s;
+      cursor: default;
+    }
+    .pattern-card:hover {
+      background: var(--surface-2);
+    }
+    .pattern-card h3 {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .pattern-card p {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .pattern-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-top: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid var(--accent-warm);
+      opacity: 0.5;
+    }
+
+    /* ── Example ── */
+    .example {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .example-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      overflow-x: auto;
+    }
+    .example-block .user {
+      color: var(--text-dim);
+    }
+    .example-block .user::before {
+      content: '> ';
+      color: var(--accent);
+    }
+    .example-block .agent {
+      color: var(--text);
+      margin-top: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border-accent);
+    }
+    .example-block .challenge {
+      color: var(--accent-warm);
+      font-style: italic;
+    }
+
+    /* ── Compatibility ── */
+    .compat {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .compat-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .compat-item {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--border-accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .compat-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* ── Quick Start ── */
+    .quickstart {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .install-steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .install-step {
+      background: var(--surface);
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .install-step .step-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      padding-top: 0.2rem;
+    }
+    .install-step h3 {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .install-step p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .install-step code {
+      display: block;
+      margin-top: 0.75rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent-warm);
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .install-step code:hover {
+      border-color: var(--border-accent);
+    }
+    .install-step code::after {
+      content: 'click to copy';
+      position: absolute;
+      right: 0.75rem;
+      top: 0.75rem;
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .install-step code.copied::after {
+      content: 'copied';
+      color: var(--green);
+    }
+    .install-note {
+      margin-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 8rem 0;
+      text-align: center;
+    }
+    .cta h2 {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    .cta p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+    }
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 640px) {
+      .pattern-grid { grid-template-columns: 1fr; }
+      .hero { padding: 5rem 0 4rem; }
+      .compat-grid { flex-direction: column; }
+    }
+
+    /* Fade-in animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up:nth-child(2) { animation-delay: 0.1s; }
+    .fade-up:nth-child(3) { animation-delay: 0.2s; }
+    .fade-up:nth-child(4) { animation-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">builder<span>/</span>advisor</div>
+    <ul class="nav-links">
+      <li><a href="#patterns">Patterns</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="https://github.com/franksellhausen/builder-advisor">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow fade-up">Open source · Agent Skills Standard · MCP</div>
+    <h1 class="fade-up">Stop asking AI for <em>answers</em>. Start asking it for <em>better questions.</em></h1>
+    <p class="hero-sub fade-up">
+      Builder Advisor is an open-source decision partner for solo builders. It connects to your AI agent and gives it the ability to challenge your thinking — not just confirm it.
+    </p>
+    <div class="hero-actions fade-up">
+      <a href="#quickstart" class="btn-primary">Get Started ↓</a>
+      <a href="SKILL.md" class="btn-secondary" download="SKILL.md">Download SKILL.md</a>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works" id="how">
+  <div class="container">
+    <div class="section-label">How it works</div>
+    <h2 class="section-title">Three components, one interaction pattern</h2>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div>
+          <h3>You bring a decision</h3>
+          <p>"I'm thinking about charging $49/mo for my design tool. My competitors charge $15. Am I crazy?"</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div>
+          <h3>The system finds relevant patterns</h3>
+          <p>Your agent queries the MCP server, which matches your situation against a library of decision patterns drawn from real solo builder journeys. It pulls challenge questions, common mistakes, and anti-patterns.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div>
+          <h3>Your agent challenges you</h3>
+          <p>Instead of saying "Great idea!" or "That's too high," your agent asks the specific hard questions this situation demands. It might reference your own past pricing decisions and their outcomes.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div>
+          <h3>You decide, and the system remembers</h3>
+          <p>Your decision and reasoning get logged. Next time you face a similar choice, the system has precedent — a mirror that shows you your own patterns.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="patterns" id="patterns">
+  <div class="container">
+    <div class="section-label">Decision Pattern Library</div>
+    <h2 class="section-title">The decisions every solo builder faces</h2>
+    <div class="pattern-grid">
+      <div class="pattern-card">
+        <h3>Pricing Your First Product</h3>
+        <p>Setting a price based on the value you create, not the cost of what you built.</p>
+        <span class="pattern-tag">Revenue</span>
+      </div>
+      <div class="pattern-card">
+        <h3>Audience vs. Product First</h3>
+        <p>Resolving the tension between distribution and building when you can't do both well.</p>
+        <span class="pattern-tag">Distribution</span>
+      </div>
+      <div class="pattern-card">
+        <h3>When to Leave Your Day Job</h3>
+        <p>Making the leap with a plan — not a fantasy.</p>
+        <span class="pattern-tag">Transition</span>
+      </div>
+      <div class="pattern-card">
+        <h3>Choosing What to Build</h3>
+        <p>Committing to one thing when everything looks equally promising and uncertain.</p>
+        <span class="pattern-tag">Ideation</span>
+      </div>
+      <div class="pattern-card">
+        <h3>Solo vs. Co-founder</h3>
+        <p>Being honest about whether you need a partner or just accountability.</p>
+        <span class="pattern-tag">Team</span>
+      </div>
+      <div class="pattern-card">
+        <h3>When to Ship</h3>
+        <p>Getting past the one-more-feature loop and facing the world.</p>
+        <span class="pattern-tag">Shipping</span>
+      </div>
+      <div class="pattern-card">
+        <h3>Saying No to Customers</h3>
+        <p>Protecting your product when every customer wants something different.</p>
+        <span class="pattern-tag">Strategy</span>
+      </div>
+      <div class="pattern-card">
+        <h3>Recognizing Burnout</h3>
+        <p>Catching the spiral before it catches you.</p>
+        <span class="pattern-tag">Health</span>
+      </div>
+      <div class="pattern-card">
+        <h3>Pivot vs. Persist</h3>
+        <p>Knowing the difference between hard and wrong.</p>
+        <span class="pattern-tag">Strategy</span>
+      </div>
+      <div class="pattern-card">
+        <h3>AI Tools vs. Manual Work</h3>
+        <p>Using AI as a force multiplier — not a replacement for understanding.</p>
+        <span class="pattern-tag">Technical</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="example">
+  <div class="container">
+    <div class="section-label">What it looks like in practice</div>
+    <h2 class="section-title">A real interaction</h2>
+    <div class="example-block">
+      <div class="user">I've been working on this SaaS for 4 months. It works, but I keep thinking I need to add team collaboration features before I launch. My competitor has it and users will expect it.</div>
+      <div class="agent">
+        <br/>Let me push back on this a bit.<br/><br/>
+        You said it "works." That means someone can get value from it today. You've been building for 4 months. This is the third feature you've described as a prerequisite for launch this conversation.<br/><br/>
+        <span class="challenge">This looks like The One More Thing Loop. Here's what I want you to sit with:</span><br/><br/>
+        Your competitor built team features after they had paying users. You're trying to build them before you have any. Why are you solving a scaling problem when you haven't validated the core problem?<br/><br/>
+        <span class="challenge">Concrete question: If you showed this to a potential customer today — no team features — what's the worst thing that could happen?</span><br/><br/>
+        If the answer is "they'd say it's useful but they need team features," that's a buying signal, not a reason to delay. You just learned what to build next AND that they want your product.<br/><br/>
+        What would you need to see to feel comfortable launching this week?
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compat">
+  <div class="container">
+    <div class="section-label">Compatibility</div>
+    <h2 class="section-title">Works wherever you work</h2>
+    <p style="color: var(--text-muted); font-weight: 300; margin-bottom: 1rem;">Built on the open Agent Skills standard. One skill, every agent.</p>
+    <div class="compat-grid">
+      <div class="compat-item"><span class="compat-dot"></span> Claude &amp; Claude Code</div>
+      <div class="compat-item"><span class="compat-dot"></span> OpenAI Codex</div>
+      <div class="compat-item"><span class="compat-dot"></span> GitHub Copilot</div>
+      <div class="compat-item"><span class="compat-dot"></span> Cursor</div>
+      <div class="compat-item"><span class="compat-dot"></span> VS Code</div>
+      <div class="compat-item"><span class="compat-dot"></span> Any MCP-compatible agent</div>
+    </div>
+  </div>
+</section>
+
+<section class="quickstart" id="quickstart">
+  <div class="container">
+    <div class="section-label">Get started in 60 seconds</div>
+    <h2 class="section-title">One file. No server required.</h2>
+    <div class="install-steps">
+      <div class="install-step">
+        <div class="step-num">01</div>
+        <div>
+          <h3>Download the skill file</h3>
+          <p>One markdown file is all you need. It works standalone — no MCP server, no dependencies.</p>
+          <code>curl -O https://raw.githubusercontent.com/franksellhausen/builder-advisor/main/skill/SKILL.md</code>
+        </div>
+      </div>
+      <div class="install-step">
+        <div class="step-num">02</div>
+        <div>
+          <h3>Drop it in your project</h3>
+          <p>Put it where your agent can find it. For Claude Code, that's the skills directory.</p>
+          <code>mkdir -p .claude/skills && mv SKILL.md .claude/skills/builder-advisor.md</code>
+        </div>
+      </div>
+      <div class="install-step">
+        <div class="step-num">03</div>
+        <div>
+          <h3>Ask your agent about any decision</h3>
+          <p>That's it. Next time you mention a decision — pricing, launching, pivoting — your agent will challenge your thinking instead of rubber-stamping it.</p>
+          <code>"I'm thinking about charging $49/mo but my competitors charge $15. What do you think?"</code>
+        </div>
+      </div>
+    </div>
+    <p class="install-note">Want persistence and decision journaling? Set up the <a href="#how" style="color: var(--accent-warm); text-decoration: none;">MCP server</a> for the full experience.</p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Your best decisions<br/>shouldn't be made alone.</h2>
+    <p>Open source. Free. Built for builders, by a builder.</p>
+    <div class="hero-actions" style="justify-content: center;">
+      <a href="SKILL.md" class="btn-primary" download="SKILL.md">Download SKILL.md</a>
+      <a href="#patterns" class="btn-secondary">Read the Patterns</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Builder Advisor — Open Source under MIT</p>
+    <p>Agent Skills Standard · MCP Protocol</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.install-step code').forEach(block => {
+  block.addEventListener('click', () => {
+    navigator.clipboard.writeText(block.textContent.trim()).then(() => {
+      block.classList.add('copied');
+      setTimeout(() => block.classList.remove('copied'), 1500);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
