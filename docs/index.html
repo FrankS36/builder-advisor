@@ -784,40 +784,20 @@ document.querySelectorAll('.install-step code').forEach(block => {
   });
 });
 
-// Beehiiv newsletter signup
-// TODO: Replace PUBLICATION_ID with your Beehiiv publication ID
-// Find it at: beehiiv dashboard → Settings → Publication ID
-const BEEHIIV_PUBLICATION_ID = 'PUBLICATION_ID';
-
-document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
+// Newsletter signup — stubbed to localStorage
+// TODO: Replace with Beehiiv, Kit, or any provider's form action/API call
+document.getElementById('newsletter-form').addEventListener('submit', (e) => {
   e.preventDefault();
   const form = e.target;
   const email = form.email.value;
-  const button = form.querySelector('button');
-  const originalText = button.textContent;
 
-  button.textContent = '...';
-  button.disabled = true;
+  const subs = JSON.parse(localStorage.getItem('ba_subscribers') || '[]');
+  subs.push({ email, ts: new Date().toISOString() });
+  localStorage.setItem('ba_subscribers', JSON.stringify(subs));
 
-  try {
-    const res = await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, utm_source: 'builder-advisor-site' })
-    });
-
-    if (res.ok || res.status === 409) {
-      form.style.display = 'none';
-      document.querySelector('.newsletter-fine').style.display = 'none';
-      document.getElementById('newsletter-success').style.display = 'block';
-    } else {
-      button.textContent = 'Try again';
-      button.disabled = false;
-    }
-  } catch {
-    button.textContent = 'Try again';
-    button.disabled = false;
-  }
+  form.style.display = 'none';
+  document.querySelector('.newsletter-fine').style.display = 'none';
+  document.getElementById('newsletter-success').style.display = 'block';
 });
 </script>
 
