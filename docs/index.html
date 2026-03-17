@@ -407,6 +407,89 @@
       letter-spacing: 0.05em;
     }
 
+    /* ── Newsletter ── */
+    .newsletter {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .newsletter-inner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3.5rem;
+      text-align: center;
+    }
+    .newsletter-inner h2 {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+    .newsletter-inner > p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 0.9rem 1.2rem;
+      background: var(--bg);
+      border: 1px solid var(--border-accent);
+      border-right: none;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input[type="email"]::placeholder {
+      color: var(--text-dim);
+    }
+    .newsletter-form input[type="email"]:focus {
+      border-color: var(--accent);
+    }
+    .newsletter-form button {
+      padding: 0.9rem 1.8rem;
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover {
+      background: #d44f1a;
+    }
+    .newsletter-fine {
+      margin-top: 1rem;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+    .newsletter-success {
+      display: none;
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
     /* ── CTA ── */
     .cta {
       padding: 8rem 0;
@@ -446,6 +529,9 @@
       .pattern-grid { grid-template-columns: 1fr; }
       .hero { padding: 5rem 0 4rem; }
       .compat-grid { flex-direction: column; }
+      .newsletter-inner { padding: 2.5rem 1.5rem; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form input[type="email"] { border-right: 1px solid var(--border-accent); border-bottom: none; }
     }
 
     /* Fade-in animation */
@@ -654,6 +740,21 @@
   </div>
 </section>
 
+<section class="newsletter">
+  <div class="container">
+    <div class="newsletter-inner">
+      <h2>New patterns, real decisions</h2>
+      <p>We add new decision patterns based on real solo builder stories. Get them when they drop — plus the thinking behind each one.</p>
+      <form class="newsletter-form" id="newsletter-form">
+        <input type="email" name="email" placeholder="you@example.com" required />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-fine">No spam. Unsubscribe anytime.</p>
+      <p class="newsletter-success" id="newsletter-success">You're in. Watch your inbox.</p>
+    </div>
+  </div>
+</section>
+
 <section class="cta">
   <div class="container">
     <h2>Your best decisions<br/>shouldn't be made alone.</h2>
@@ -673,6 +774,7 @@
 </footer>
 
 <script>
+// Copy-to-clipboard on code blocks
 document.querySelectorAll('.install-step code').forEach(block => {
   block.addEventListener('click', () => {
     navigator.clipboard.writeText(block.textContent.trim()).then(() => {
@@ -680,6 +782,42 @@ document.querySelectorAll('.install-step code').forEach(block => {
       setTimeout(() => block.classList.remove('copied'), 1500);
     });
   });
+});
+
+// Beehiiv newsletter signup
+// TODO: Replace PUBLICATION_ID with your Beehiiv publication ID
+// Find it at: beehiiv dashboard → Settings → Publication ID
+const BEEHIIV_PUBLICATION_ID = 'PUBLICATION_ID';
+
+document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const email = form.email.value;
+  const button = form.querySelector('button');
+  const originalText = button.textContent;
+
+  button.textContent = '...';
+  button.disabled = true;
+
+  try {
+    const res = await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, utm_source: 'builder-advisor-site' })
+    });
+
+    if (res.ok || res.status === 409) {
+      form.style.display = 'none';
+      document.querySelector('.newsletter-fine').style.display = 'none';
+      document.getElementById('newsletter-success').style.display = 'block';
+    } else {
+      button.textContent = 'Try again';
+      button.disabled = false;
+    }
+  } catch {
+    button.textContent = 'Try again';
+    button.disabled = false;
+  }
 });
 </script>
 
