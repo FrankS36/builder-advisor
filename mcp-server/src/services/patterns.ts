@@ -38,6 +38,24 @@ export function findRelevantPatterns(
   const queryLower = query.toLowerCase();
   const queryWords = queryLower.split(/\s+/).filter((w) => w.length > 2);
 
+  // Domain-specific synonyms to improve matching
+  const synonyms: Record<string, string[]> = {
+    pricing: ["price", "charge", "charging", "cost", "expensive", "cheap", "afford", "pay", "paying", "revenue", "money", "fee"],
+    launch: ["ship", "shipping", "release", "deploy", "live", "publish"],
+    pivot: ["change", "switch", "direction", "abandon", "restart"],
+    burnout: ["tired", "exhausted", "overwhelmed", "stressed", "quit", "break"],
+    cofounder: ["partner", "co-founder", "cofounder", "alone", "solo", "team"],
+    audience: ["users", "customers", "followers", "community", "distribution"],
+  };
+
+  // Expand query with synonym-matched tags
+  const expandedTags: string[] = [];
+  for (const [tag, words] of Object.entries(synonyms)) {
+    if (queryWords.some((w) => words.includes(w) || w === tag)) {
+      expandedTags.push(tag);
+    }
+  }
+
   const scored = all.map((pattern) => {
     let score = 0;
     const searchText = [
@@ -45,6 +63,8 @@ export function findRelevantPatterns(
       pattern.situation,
       ...pattern.tags,
       ...pattern.common_mistakes,
+      ...pattern.challenge_questions,
+      ...pattern.decision_factors,
     ]
       .join(" ")
       .toLowerCase();
@@ -52,16 +72,18 @@ export function findRelevantPatterns(
     // Tag matches are highest signal
     for (const tag of pattern.tags) {
       if (queryLower.includes(tag)) score += 10;
+      if (expandedTags.includes(tag)) score += 10;
     }
 
-    // Title word matches
+    // Title word matches (only words > 3 chars to reduce noise)
     const titleWords = pattern.title.toLowerCase().split(/\s+/);
     for (const word of queryWords) {
-      if (titleWords.some((tw) => tw.includes(word))) score += 5;
+      if (word.length > 3 && titleWords.some((tw) => tw.includes(word))) score += 5;
     }
 
-    // General content matches
+    // General content matches (only words > 3 chars)
     for (const word of queryWords) {
+      if (word.length <= 3) continue;
       const occurrences = (searchText.match(new RegExp(word, "g")) || [])
         .length;
       score += occurrences;
