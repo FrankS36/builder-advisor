@@ -490,6 +490,52 @@
       letter-spacing: 0.05em;
     }
 
+    /* ── Download prompt ── */
+    .download-prompt {
+      display: none;
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border-accent);
+      padding: 2rem;
+      max-width: 360px;
+      z-index: 1000;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .download-prompt.visible { display: block; }
+    .download-prompt h3 {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .download-prompt > p {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+    .download-prompt .newsletter-form {
+      max-width: none;
+    }
+    .download-prompt .dismiss {
+      display: block;
+      margin-top: 0.75rem;
+      background: none;
+      border: none;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+    }
+    .download-prompt .dismiss:hover { color: var(--text-muted); }
+
     /* ── CTA ── */
     .cta {
       padding: 8rem 0;
@@ -693,8 +739,8 @@
 <section class="newsletter">
   <div class="container">
     <div class="newsletter-inner">
-      <h2>New patterns, real decisions</h2>
-      <p>We add new decision patterns based on real solo builder stories. Get them when they drop — plus the thinking behind each one.</p>
+      <h2>Build smarter with AI</h2>
+      <p>New skills, new patterns, and practical ways to use AI agents more effectively as a solo builder. No hype — just what works.</p>
       <form class="newsletter-form" id="newsletter-form">
         <input type="email" name="email" placeholder="you@example.com" required />
         <button type="submit">Subscribe</button>
@@ -773,6 +819,16 @@
   </div>
 </footer>
 
+<div class="download-prompt" id="download-prompt">
+  <h3>Nice — you're set up.</h3>
+  <p>Want to hear about new skills and practical ways to use AI agents as a solo builder?</p>
+  <form class="newsletter-form" id="download-prompt-form">
+    <input type="email" name="email" placeholder="you@example.com" required />
+    <button type="submit">I'm in</button>
+  </form>
+  <button class="dismiss" id="download-prompt-dismiss">No thanks</button>
+</div>
+
 <script>
 // Copy-to-clipboard on code blocks
 document.querySelectorAll('.install-step code').forEach(block => {
@@ -786,18 +842,44 @@ document.querySelectorAll('.install-step code').forEach(block => {
 
 // Newsletter signup — stubbed to localStorage
 // TODO: Replace with Beehiiv, Kit, or any provider's form action/API call
+function saveSubscriber(email, source) {
+  const subs = JSON.parse(localStorage.getItem('ba_subscribers') || '[]');
+  subs.push({ email, source, ts: new Date().toISOString() });
+  localStorage.setItem('ba_subscribers', JSON.stringify(subs));
+  localStorage.setItem('ba_subscribed', 'true');
+}
+
 document.getElementById('newsletter-form').addEventListener('submit', (e) => {
   e.preventDefault();
   const form = e.target;
-  const email = form.email.value;
-
-  const subs = JSON.parse(localStorage.getItem('ba_subscribers') || '[]');
-  subs.push({ email, ts: new Date().toISOString() });
-  localStorage.setItem('ba_subscribers', JSON.stringify(subs));
+  saveSubscriber(form.email.value, 'inline');
 
   form.style.display = 'none';
   document.querySelector('.newsletter-fine').style.display = 'none';
   document.getElementById('newsletter-success').style.display = 'block';
+});
+
+// Post-download prompt
+const prompt = document.getElementById('download-prompt');
+
+document.querySelectorAll('a[download]').forEach(link => {
+  link.addEventListener('click', () => {
+    if (localStorage.getItem('ba_subscribed')) return;
+    setTimeout(() => prompt.classList.add('visible'), 1500);
+  });
+});
+
+document.getElementById('download-prompt-dismiss').addEventListener('click', () => {
+  prompt.classList.remove('visible');
+});
+
+document.getElementById('download-prompt-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const form = e.target;
+  saveSubscriber(form.email.value, 'download-prompt');
+
+  prompt.innerHTML = '<h3 style="color: var(--green); font-family: var(--mono); font-size: 0.8rem;">You\'re in. Watch your inbox.</h3>';
+  setTimeout(() => prompt.classList.remove('visible'), 2000);
 });
 </script>
 
